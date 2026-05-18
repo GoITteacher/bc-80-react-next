@@ -15,7 +15,6 @@
 // type guards: перевірка typeof/Array.isArray/"prop" in звужує union до конкретного варіанта.
 //!======================================================
 
-
 //!======================================================
 /* 🧩 Task 1 — ідентифікатор
  * Заміни any на union number|string і відформатуй для обох випадків.
@@ -37,7 +36,9 @@ export const nextStatus = (status: OrderStatus): OrderStatus => {
 /* 🧩 Task 3 — type guard
  * Додай звуження типу для різних форм payload.
  */
-export type Payload = { type: "text"; value: string } | { type: "count"; value: number };
+export type Payload =
+  | { type: "text"; value: string }
+  | { type: "count"; value: number };
 export function handlePayload(payload: any) {
   if (payload.type === "text") {
     return payload.value.trim();
