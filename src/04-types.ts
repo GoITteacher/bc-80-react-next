@@ -7,10 +7,28 @@
  * - Type guards: перевірка typeof/символи in для звуження типу.
  *
  */
+//!=========================================
+
+// type UserAge = number | string;
+// const userAge: UserAge = 25;
+// const userAge2: UserAge = "30";
+
+//!=========================================
+
+// type UserName = string;
+// const firstName: UserName = "Vasya";
+// const lastName: UserName = "Klopotenko";
+
 //!======================================================
 // union: дозволяє кілька варіантів типу (number | string) без any.
+
 //!======================================================
 // літеральні типи: обмежують значення до конкретних рядків/чисел, зручно для статусів/ролей.
+
+// type UserRole = "admin" | "student" | "teacher";
+// type InsertPosition = "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+// const userRole: UserRole = "admin";
+
 //!======================================================
 // type guards: перевірка typeof/Array.isArray/"prop" in звужує union до конкретного варіанта.
 //!======================================================
