@@ -93,24 +93,52 @@ export const points: number[] = [10, 20, 30];
  * Типізуй список курсів, щоб title і lessons були підказуваними.
  */
 
-// interface Course {
-//   title: string;
-//   lessons: number;
-// }
+interface Course {
+  title: string;
+  lessons: number;
+}
 
 // export const courses: Course[] = [
 //   { title: "TS Basics", lessons: 12 },
 //   { title: "React", lessons: 18 },
 // ];
 
-// const titles: string[] = courses.map((c) => c.title.toUpperCase());
+// const titles: string[] = courses.map((item) => item.title);
+
+//!=========================================
+
+// type User = {
+//   name: string;
+//   age: number;
+// };
+
+//!=========================================
 
 /* 🧩 Task 3 — кортеж налаштувань
  * Опиши фіксований набір значень: назва, лічильник, активність.
  */
 
-// type Settings = [string, number, boolean];
-
 // export const settings: Settings = ["autosave", 3, true];
 // export const settings1: Settings = ["autosave", 3, true];
 // export const settings2: Settings = ["autosave", 3, true];
+
+// type UserCredentials = {
+//   email: string;
+//   password: string;
+//   phoneNumber: string;
+// };
+
+// type UserAddress = {
+//   country: string;
+//   city: string;
+// };
+
+// type User = UserCredentials & UserAddress;
+
+// const user: User = {
+//   email: "test",
+//   password: "test",
+//   phoneNumber: "test",
+//   country: "test",
+//   city: "test",
+// };

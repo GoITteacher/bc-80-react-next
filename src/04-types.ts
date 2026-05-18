@@ -37,29 +37,47 @@
 /* 🧩 Task 1 — ідентифікатор
  * Заміни any на union number|string і відформатуй для обох випадків.
  */
-export type Identifier = any;
-export const formatId = (id: Identifier) => {
-  return typeof id === "number" ? `#${id}` : id.toUpperCase();
-};
+//!=========================================
+// export type Identifier = string | number;
+
+// export const formatId = (id: Identifier) => {
+//   return typeof id === "number" ? `#${id}` : id.toUpperCase();
+// };
+
+//!=========================================
 
 /* 🧩 Task 2 — статуси замовлення
  * Опиши літеральні статуси, щоб заборонити довільні рядки.
  */
-export type OrderStatus = string;
-export const nextStatus = (status: OrderStatus): OrderStatus => {
-  if (status === "pending") return "shipped";
-  return "done";
-};
+// export type OrderStatus = 'pending' | 'shipped' | 'done';
+// export const nextStatus = (status: OrderStatus): OrderStatus => {
+//   if (status === "pending") return "shipped";
+//   return "done";
+// };
 
 /* 🧩 Task 3 — type guard
  * Додай звуження типу для різних форм payload.
  */
-export type Payload =
-  | { type: "text"; value: string }
-  | { type: "count"; value: number };
-export function handlePayload(payload: any) {
-  if (payload.type === "text") {
-    return payload.value.trim();
+
+interface UserPayload {
+  name: string;
+  balance: number;
+  role: "user";
+}
+interface AdminPayload {
+  name: string;
+  password: string;
+  role: "admin";
+}
+
+export type Payload = UserPayload | AdminPayload;
+
+export function handlePayload(payload: Payload) {
+  if (payload.role === "user") {
+    console.log(payload.balance);
   }
-  return payload.value + 1;
+
+  if (payload.role === "admin") {
+    console.log(payload.password);
+  }
 }
