@@ -8,8 +8,15 @@
  * - Паралельні запити: Promise.all / Promise.allSettled.
  * - Завдання: переписати функції з any/unknown на точні типи.
  */
+
+// async function getNumber<T>(x: T): Promise<T[]> {
+//   return [x, x];
+// }
+// getNumber<string>("Hello");
+
 //!======================================================
 // Promise<T>: типізуємо значення, яке буде доступне в then/await, уникаємо any.
+
 //!======================================================
 // Помилки: відловлюємо через catch/try-catch, бажано типізувати помилки (unknown) і звужувати.
 //!======================================================
@@ -60,7 +67,7 @@ export const safeParse = async (json: string): Promise<any> => {
  */
 export async function loadData(
   userPromise: Promise<any>,
-  postsPromise: Promise<any>
+  postsPromise: Promise<any>,
 ): Promise<any> {
   const [user, posts] = await Promise.all([userPromise, postsPromise]);
   return { user, posts };
