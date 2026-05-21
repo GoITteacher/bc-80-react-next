@@ -1,23 +1,16 @@
-import Container from "./books/Container/Container";
-import Footer from "./Footer/Footer";
-import Header from "./Header/Header";
-import MainSection from "./MainSection/MainSection";
-import Sidebar from "./Sidebar/Sidebar";
+import Footer from "../lesson-components/part1/Footer/Footer";
 import css from "./App.module.css";
+import CocktailList from "./CocktailList/CocktailList";
+import Header from "./Header/Header";
 
-/**
- * Завдання: додайте типізацію пропсів для дочірніх компонентів за потреби.
- */
-export default function App() {
+const App = () => {
   return (
-    <div className={css.page}>
+    <div className={css["page"]}>
       <Header />
-      <main className={css.main}>
-        <Sidebar />
-        <Container />
-        <MainSection />
-      </main>
+      <CocktailList />
       <Footer />
     </div>
   );
-}
+};
+
+export default App;

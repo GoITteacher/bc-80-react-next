@@ -1,11 +1,13 @@
 import css from "./Header.module.css";
+import Logo from "./Logo/Logo";
+import Navigation from "./Navigation/Navigation";
 
 const Header = () => {
   return (
-    <header className={css.header}>
-      <div className={css.brand}>Book Haven</div>
-      <p className={css.tagline}>Місце, де кожна добірка натхненна</p>
-    </header>
+    <div className={css["header"]}>
+      <Logo />
+      <Navigation />
+    </div>
   );
 };
 

@@ -1,0 +1,20 @@
+.card {
+  border-radius: 18px;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.cardText {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+}
