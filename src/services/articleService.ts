@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Article } from "../types/articles";
+import { NEWS_API_KEY } from "../helpers/constants";
 
 interface GetArticlesResponse {
   status: string;
@@ -13,7 +14,7 @@ export const getArticles = async (query: string, page: number) => {
   const params = {
     q: query,
     page: page,
-    apiKey: "c8747511a2c34730a83caaff4f3693e7",
+    apiKey: NEWS_API_KEY,
   };
 
   const res = await axios.get<GetArticlesResponse>(url, { params });
