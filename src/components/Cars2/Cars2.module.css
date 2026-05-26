@@ -1,0 +1,70 @@
+.cars {
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin: 24px 0 0;
+  list-style: none;
+}
+
+.pageItem {
+  display: flex;
+}
+
+.pageLink {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  color: #1f2937;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.pageLink:hover,
+.pageLink:focus {
+  color: #ffffff;
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.active .pageLink {
+  color: #ffffff;
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.disabled .pageLink {
+  color: #9ca3af;
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+.disabled .pageLink:hover,
+.disabled .pageLink:focus {
+  color: #9ca3af;
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+.list {
+  flex-direction: column;
+}

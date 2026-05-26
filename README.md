@@ -2,7 +2,7 @@
 
 - Етапи життєвого циклу компонента: монтування, оновлення, розмонтування
 - Побічні ефекти з `useEffect`
-  - https://swapi.info/api/people/1
+  - https://s3.eu-north-1.amazonaws.com/lms.goit.files/cd8bb3d2-cfa5-46f9-a595-17f96e2d484e1.png
   - Запит при монтуванні компонента
   - Залежності ефекта
   - Синтаксис `async/await`
