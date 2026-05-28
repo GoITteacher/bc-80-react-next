@@ -15,6 +15,7 @@ const Cars = () => {
     queryKey: ["cars", { make, page }],
     queryFn: () => getCars({ make, page }),
     placeholderData: keepPreviousData,
+    enabled: Boolean(make),
   });
 
   const cars = carsQuery.data?.items || [];
