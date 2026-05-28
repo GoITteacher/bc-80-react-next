@@ -1,4 +1,4 @@
-import { Song } from "../../types/songs";
+import { Song } from "../../../types/songs";
 import css from "./SongList.module.css";
 
 interface SongListProps {
