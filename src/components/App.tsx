@@ -1,76 +1,50 @@
-import { useState } from "react";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import ReactPaginate from "react-paginate";
-// import { fetchPerson } from "../services/swapiService";
-import SearchForm from "./SearchForm";
-import { fetchArticles } from "../services/articleService";
-import ArticleList from "./ArticleList";
+import SearchForm from "./SearchForm/SearchForm";
+import SongList from "./SongList/SongList";
 import css from "./App.module.css";
+import { getSongs } from "../services/songService";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export default function App() {
-  // const [count, setCount] = useState(1);
+  const [artist, setArtist] = useState("");
 
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ["character", count],
-  //   queryFn: () => fetchPerson(count),
-
-  // });
-
-  const [topic, setTopic] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const { data, isLoading, isError, isSuccess, error, refetch } = useQuery({
-    queryKey: ["articles", topic, currentPage],
-    queryFn: () => fetchArticles(topic, currentPage),
-    enabled: topic !== "",
-    initialData: [],
-    refetchInterval: 3000,
-    refetchOnMount: true,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
-    placeholderData: keepPreviousData,
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["songs", artist],
+    queryFn: () => getSongs(artist),
   });
 
-  const handleSearch = (newTopic: string) => {
-    setTopic(newTopic);
-    setCurrentPage(1);
-  };
+  const songs = data?.items || [];
 
-  const changePage = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected + 1);
+  const onSubmit = (query: string) => {
+    setArtist(query);
   };
-
-  const totalPages = data?.nbPages ?? 0;
 
   return (
-    <>
-      <SearchForm onSubmit={handleSearch} />
+    <div className={css.container}>
+      <header className={css.header}>
+        <h1 className={css.title}>🎵 Song Search</h1>
+        <p className={css.subtitle}>Find songs and artists</p>
+      </header>
 
-      {isSuccess && totalPages > 1 && (
-        <ReactPaginate
-          pageCount={totalPages}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={1}
-          onPageChange={changePage}
-          forcePage={currentPage - 1}
-          nextLabel=">"
-          previousLabel="<"
-          containerClassName={css.pagination}
-          activeClassName={css.active}
-        />
+      <SearchForm callback={onSubmit} />
+
+      {isLoading && (
+        <div className={css.statusContainer}>
+          <p className={css.loading}>⏳ Loading songs...</p>
+        </div>
       )}
 
-      {isLoading && <p>Loading data...</p>}
-      {isError && <p>There was an error!!!!!</p>}
-      {data && data.hits.length > 0 && <ArticleList items={data.hits} />}
-      <hr />
+      {isError && (
+        <div className={css.statusContainer}>
+          <p className={css.error}>❌ Error loading songs. Please try again.</p>
+        </div>
+      )}
 
-      {/* <button onClick={() => setCount(count + 1)}>
-        Fetch next character with ID: {count}
-      </button>
-      {isLoading && <p>Loading data...</p>}
-      {isError && <p>There was an error!!!!!</p>}
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
-    </>
+      {!isLoading && !isError && (
+        <section className={css.contentSection}>
+          <SongList items={songs} />
+        </section>
+      )}
+    </div>
   );
 }

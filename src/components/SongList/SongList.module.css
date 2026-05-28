@@ -1,0 +1,50 @@
+.songList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.songItem {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-left: 4px solid #0a66c2;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+.songItem:hover {
+  background-color: #f0f4f9;
+  transform: translateX(4px);
+}
+
+.songTitle {
+  font-weight: 600;
+  color: #213547;
+  margin: 0 0 4px 0;
+}
+
+.songArtist {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.emptyStateText {
+  font-size: 16px;
+}
