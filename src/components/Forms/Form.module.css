@@ -72,13 +72,16 @@
 .button:hover {
   background-color: #0056b3;
 }
+.button:disabled {
+  background-color: silver;
+}
 
 .error {
   font-size: 14px;
   color: orangered;
 }
 
-.invalid-input {
-  outline: none;
+.invalid {
   border: 1px solid red;
+  outline-color: red;
 }
