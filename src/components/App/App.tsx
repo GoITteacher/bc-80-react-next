@@ -1,24 +1,26 @@
 import { useState } from "react";
-import { useDebounce } from "use-debounce";
-import TaskList from "../TaskList/TaskList";
-import Modal from "../Modal/Modal";
-import TaskForm from "../TaskForm/TaskForm";
 import SearchBox from "../SearchBox/SearchBox";
-import SortFilter from "../SortFilter/SortFilter";
 import css from "./App.module.css";
+import Cocktails from "../Cocktails/Cocktails";
+import { useDebounce } from "use-debounce";
+import { Toaster } from "react-hot-toast";
+import { useHello } from "../../hooks/useHello";
 
 export default function App() {
+  const [query, setQuery] = useState("");
+  useHello();
+
   return (
     <div className={css.container}>
       <header className={css.header}>
-        <SearchBox value={""} onSearch={() => {}} />
-        <SortFilter />
-        <button className={css.createButton} onClick={() => {}}>
-          Create task
-        </button>
+        <h1>Cocktails</h1>
+        <SearchBox value={query} setValue={setQuery} />
+        <p>query: {query}</p>
       </header>
-      <strong className={css.loading}>Loading tasks...</strong>
-      <TaskList tasks={[]} />
+
+      <Cocktails query={query} />
+
+      <Toaster />
     </div>
   );
 }

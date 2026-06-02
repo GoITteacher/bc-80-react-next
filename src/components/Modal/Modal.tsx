@@ -1,20 +1,23 @@
-import { createPortal } from "react-dom";
+import { useEffect } from "react";
 import css from "./Modal.module.css";
+import { useModalListener } from "../../hooks/useModal";
 
 interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
 
-export default function Modal({ onClose, children }: ModalProps) {
+const Modal = ({ children, onClose }: ModalProps) => {
+  useModalListener(onClose);
+
   return (
-    <div className={css.backdrop} role="dialog" aria-modal="true">
-      <div className={css.modal}>
-        <button type="button" className={css.closeBtn} onClick={onClose}>
-          ×
-        </button>
+    <div className={css["backdrop"]}>
+      <div className={css["modal"]}>
+        <button onClick={onClose}>CLOSE</button>
         {children}
       </div>
     </div>
   );
-}
+};
+
+export default Modal;
