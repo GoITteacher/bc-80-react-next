@@ -1,3 +1,4 @@
+import HowNext from "@/components/HowNext/HowNext";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -15,14 +16,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className={styles.howNext}>
-        <h2>Як влаштований Next.js</h2>
-        <ol>
-          <li>Проєкт будується на React, але має власну структуру.</li>
-          <li>Маршрути формуються з файлової системи.</li>
-          <li>Рендеринг обирається під задачу: SSR, SSG або CSR.</li>
-        </ol>
-      </section>
+      <HowNext />
 
       <section>
         <h2>Ключові теми</h2>

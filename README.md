@@ -8,6 +8,7 @@
 
 ## Структура проєкта
 
+- npx create-next-app@latest
 - Next CLI
 - Структура папок та файлів
 
