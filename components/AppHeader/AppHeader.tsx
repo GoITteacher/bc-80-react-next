@@ -19,6 +19,9 @@ export default function AppHeader() {
             <Link href="/pokemons">Pokemons</Link>
           </li>
           <li>
+            <Link href="/cocktails">Cocktails</Link>
+          </li>
+          <li>
             <Link href="/students">Students</Link>
           </li>
           <li>

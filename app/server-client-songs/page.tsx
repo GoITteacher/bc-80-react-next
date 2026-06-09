@@ -1,26 +1,27 @@
-import CocktailList from "@/components/CocktailList/CocktailList";
+import ClientSongList from "@/components/ClientSongList/ClientSongList";
 import css from "./Page.module.css";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getRandomCocktails } from "@/services/cocktailsService";
+import { getSongs } from "@/services/songsService";
 
 const Page = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["cocktails"],
-    queryFn: () => getRandomCocktails(),
+    queryKey: ["songs"],
+    queryFn: () => getSongs(),
   });
 
   return (
-    <main className={css["page"]}>
+    <div className={css["page"]}>
+      <h1>Гібридний запит</h1>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <CocktailList />
+        <ClientSongList />
       </HydrationBoundary>
-    </main>
+    </div>
   );
 };
 
