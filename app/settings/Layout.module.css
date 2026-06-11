@@ -1,0 +1,19 @@
+.layout {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 50px;
+}
+
+.sidebar {
+  background-color: teal;
+  color: white;
+  height: 800px;
+  padding: 50px;
+}
+.page {
+  border: 1px solid tomato;
+  height: 800px;
+  padding: 50px;
+}
