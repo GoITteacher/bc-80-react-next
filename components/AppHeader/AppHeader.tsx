@@ -12,7 +12,7 @@ export default function AppHeader() {
           <Link href="/dashboard">dashboard</Link>
         </li>
         <li>
-          <Link href="/main-products">Products</Link>
+          <Link href="/homework-products/all">Products</Link>
         </li>
         <li>
           <Link href="/recipes">Recipes</Link>
