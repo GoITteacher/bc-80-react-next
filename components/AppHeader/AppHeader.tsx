@@ -9,7 +9,10 @@ export default function AppHeader() {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/products">Products</Link>
+          <Link href="/dashboard">dashboard</Link>
+        </li>
+        <li>
+          <Link href="/main-products">Products</Link>
         </li>
         <li>
           <Link href="/recipes">Recipes</Link>

@@ -1,4 +1,4 @@
-import Categories from "../products/Categories";
+import Categories from "../../products/Categories";
 import css from "./layout.module.css";
 
 export default function Layout({

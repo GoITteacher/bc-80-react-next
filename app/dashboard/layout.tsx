@@ -1,29 +1,22 @@
-"use client";
+import React from "react";
 
-import Link from "next/link";
-import css from "./layout.module.css";
-type Props = {
-  sidebar: React.ReactNode;
-  page: React.ReactNode;
-  content: React.ReactNode;
-};
-
-export default function Layout({ page, sidebar, content }: Props) {
-  return (
-    <div className={css["container"]}>
-      <ul className={css["navigation"]}>
-        <Link href="/dashboard/filters">Filters</Link>
-        <Link href="/dashboard/folders">Folders</Link>
-        <Link href="/dashboard/settings">Settings</Link>
-      </ul>
-
-      <div className={css["content"]}>
-        <div className={css["sidebar"]}>{sidebar}</div>
-        <div className={css["sidebar"]}>{content}</div>
-        <div className={css["page"]}>{page}</div>
-      </div>
-    </div>
-  );
+interface LayoutProps {
+  diagram1: React.ReactNode;
+  diagram2: React.ReactNode;
+  diagram3: React.ReactNode;
+  children: React.ReactNode;
 }
 
-// dashboard/filters -> dashboard/@sidebar/filters/page.tsx + {children}
+const Layout = ({ diagram1, diagram2, diagram3, children }: LayoutProps) => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {diagram1}
+      {diagram2}
+      {diagram3}
+      {children}
+    </div>
+  );
+};
+
+export default Layout;

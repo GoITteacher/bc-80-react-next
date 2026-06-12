@@ -1,3 +1,5 @@
-export default function Page() {
+const Modal = () => {
   return <></>;
-}
+};
+
+export default Modal;
