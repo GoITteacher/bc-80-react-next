@@ -1,8 +1,35 @@
 import { getRandomCocktails } from "@/lib/cocktails-api";
-import { Metadata } from "next";
-import Image from "next/image";
+
 import Link from "next/link";
 import styles from "./page.module.css";
+import { Metadata } from "next";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Cocktails",
+  description: "cocktails page",
+  openGraph: {
+    title: "Cocktails",
+    description: "My Cocktails>",
+    url: "http://localhost:3000/cocktails",
+    siteName: "Cocktails-HUB",
+    images: {
+      url: "https://www.artofdrink.com/wp-content/uploads/2010/08/blue-lagoon-cocktail-735x491.jpg",
+      width: 1200,
+      height: 630,
+      alt: "cocktails",
+    },
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cocktails",
+    description: "Cocktails",
+    images: [
+      "https://www.artofdrink.com/wp-content/uploads/2010/08/blue-lagoon-cocktail-735x491.jpg",
+    ],
+  },
+};
 
 const Page = async () => {
   const cocktails = await getRandomCocktails();
@@ -32,11 +59,10 @@ const Page = async () => {
               <li key={el._id} className={styles.card}>
                 <Link className={styles.cardLink} href={`/cocktails/${el._id}`}>
                   <div className={styles.cardMedia}>
-                    <img
+                    <Image
                       className={styles.cardImage}
                       src={el.drinkThumb}
                       alt={el.drink}
-                      fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>

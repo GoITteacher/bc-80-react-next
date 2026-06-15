@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next dev --turbopack",
+    "start": "next start",
     "build": "next build --turbopack",
     "lint": "eslint",
     "push": "git cmp 'update'"

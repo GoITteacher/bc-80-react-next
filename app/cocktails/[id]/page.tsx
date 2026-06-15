@@ -8,6 +8,22 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+// export const metadata: Metadata = {
+//   title: "Cocktail Details",
+// };
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { id } = await params;
+  const details = await getCocktailDetails(id);
+
+  return {
+    title: details.drink,
+    description: details.description,
+  };
+};
+
 const Page = async ({ params }: Props) => {
   const { id } = await params;
   const details = await getCocktailDetails(id);
@@ -20,14 +36,16 @@ const Page = async ({ params }: Props) => {
 
       <section className={styles.hero}>
         <div className={styles.media}>
-          <img
+          <Image
             className={styles.image}
             src={details.drinkThumb}
             width={560}
             height={560}
-            priority
             alt={details.drink}
-            sizes="(max-width: 900px) 100vw, 50vw"
+            loading="lazy"
+            sizes="(max-width: 400px) 100px,(max-width: 600px) 300px, 50vw"
+            placeholder="blur"
+            priority
           />
         </div>
         <div className={styles.content}>

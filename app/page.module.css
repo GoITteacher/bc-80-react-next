@@ -28,6 +28,7 @@
     var(--color-surface);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  font: var(--font-roboto);
 }
 
 .hero::after {

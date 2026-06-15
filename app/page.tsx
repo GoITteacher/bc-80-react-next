@@ -1,5 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home Page",
+  description: "Home Page",
+  keywords: ["home", "products"],
+};
 
 export default function Home() {
   return (
@@ -9,6 +16,12 @@ export default function Home() {
         <h1 className={styles.title}>
           Discover beautiful products at a glance
         </h1>
+        <img
+          src="https://www.artofdrink.com/wp-content/uploads/2010/08/blue-lagoon-cocktail-735x491.jpg"
+          width={300}
+          height={300}
+          alt="cocktails"
+        />
 
         <p className={styles.subtitle}>
           Browse curated categories, inspect detailed descriptions, and learn
