@@ -14,7 +14,7 @@ export default function AppHeader() {
           <Link href="/products">Tasks</Link>
         </li>
         <li>
-          <Link href="/wishlist">Bucket</Link>
+          <Link href="/wishlist">Wishlisth</Link>
         </li>
         <li>
           <Link href="/bucket">Bucket</Link>
