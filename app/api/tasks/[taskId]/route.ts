@@ -1,21 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
-import { ApiError, globalApi } from "../../api";
+import { NextRequest } from "next/server";
+import { globalServer } from "../../serverConfig";
 
-export async function GET(req: NextRequest,{
-  params,
-}: {
+interface ParamsProps {
   params: Promise<{ taskId: string }>;
-}){
-    const { taskId } = await params;
-    try{
-        const res = await globalApi.get(`/tasks/${taskId}`);
-        return NextResponse.json(res.data)
-    }catch(err){
-        const error = err as ApiError;
-        return NextResponse.json({
-            error: error.response?.data.error || error.message
-        }, {
-            status: error.status
-        })
-    }
 }
+
+export const GET = async () => {};
+
+export const PATCH = async (req: NextRequest, { params }: ParamsProps) => {
+  const body = await req.json();
+  const { taskId } = await params;
+  const res = await globalServer.patch(`/tasks/${taskId}`, body);
+};
+
+export const DELETE = async () => {};

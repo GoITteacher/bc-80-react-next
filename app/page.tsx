@@ -1,3 +1,4 @@
+import { getCars } from "@/services/carsService";
 import styles from "./page.module.css";
 import Lang from "@/components/Lang/Lang";
 

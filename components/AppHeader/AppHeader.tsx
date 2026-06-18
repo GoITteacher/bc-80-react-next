@@ -3,10 +3,12 @@
 import Link from "next/link";
 import css from "./AppHeader.module.css";
 import { selectChangeLang, selectLang, useLangStore } from "@/stores/langStore";
+import { useAuthStore } from "@/stores/authStore";
 
 export default function AppHeader() {
   const lang = useLangStore(selectLang);
   const changeLang = useLangStore(selectChangeLang);
+  const { user, isAuth } = useAuthStore();
 
   return (
     <header className={css.header}>
@@ -30,6 +32,11 @@ export default function AppHeader() {
         <option value="ua">Ua</option>
         <option value="pl">Pl</option>
       </select>
+
+      <div>
+        {isAuth && <button>Logout</button>}
+        {!isAuth && <Link href={"/sign-in"}>Login</Link>}
+      </div>
     </header>
   );
 }
