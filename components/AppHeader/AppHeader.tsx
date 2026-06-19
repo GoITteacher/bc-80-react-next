@@ -2,65 +2,46 @@
 
 import Link from "next/link";
 import css from "./AppHeader.module.css";
-import { useUserStore } from "@/store/userStore";
-import { logout } from "@/lib/auth";
-import { useRouter } from "next/navigation";
-
-const navLinks = [
-  { label: "Tasks", href: "/tasks" },
-  { label: "Notes", href: "/notes" },
-  { label: "News", href: "/news" },
-];
-
-const secondaryLinks = [
-  { label: "Login", href: "/sign-in" },
-  { label: "Register", href: "/sign-up", primary: true },
-];
+import { selectChangeLang, selectLang, useLangStore } from "@/stores/langStore";
+import { useAuthStore } from "@/stores/authStore";
+import { logout } from "@/services/auth";
 
 export default function AppHeader() {
-  const router = useRouter();
-  const isAuth = useUserStore((s) => s.isAuth);
-  const clearUserInfo = useUserStore((s) => s.clearUserInfo);
+  const lang = useLangStore(selectLang);
+  const changeLang = useLangStore(selectChangeLang);
+  const { user, isAuth, clearUser } = useAuthStore();
 
   const handleLogout = async () => {
     await logout();
-    clearUserInfo();
-    router.push("/");
+    clearUser();
   };
 
   return (
     <header className={css.header}>
-      <Link href="/" className={css.brand}>
-        <span className={css.brandMark} />
-        <div>
-          <p className={css.brandName}>Pulse workspace</p>
-          <span className={css.brandTag}>Demo portal</span>
-        </div>
-      </Link>
+      <ul className={css.nav}>
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/tasks">Tasks</Link>
+        </li>
+        <li>
+          <Link href="/bucket">Bucket</Link>
+        </li>
+      </ul>
+      <select
+        name="lang"
+        value={lang}
+        onChange={(e) => changeLang(e.target.value)}
+      >
+        <option value="en">En</option>
+        <option value="ua">Ua</option>
+        <option value="pl">Pl</option>
+      </select>
 
-      {isAuth && (
-        <nav className={css.nav}>
-          {navLinks.map((link) => (
-            <Link className={css.navLink} key={link.label} href={link.href}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-
-      <div className={css.auth}>
-        {!isAuth &&
-          secondaryLinks.map((link) => (
-            <Link
-              className={`${css.authLink} ${link.primary ? css.primary : ""}`}
-              key={link.label}
-              href={link.href}
-            >
-              {link.label}
-            </Link>
-          ))}
-
+      <div>
         {isAuth && <button onClick={handleLogout}>Logout</button>}
+        {!isAuth && <Link href={"/sign-in"}>Login</Link>}
       </div>
     </header>
   );

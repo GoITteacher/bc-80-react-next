@@ -1,15 +1,26 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { globalServer } from "../../serverConfig";
 import { parse } from "cookie";
-import { cookies } from "next/headers";
 
 export const POST = async (req: NextRequest) => {
-  const body = await req.json();
-  const res = await globalServer.post("/auth/login", body);
-
   const cookieStore = await cookies();
-  const cookieHeaders = res.headers["set-cookie"];
 
+  if (cookieStore.get("accessToken")) {
+    return NextResponse.json({ success: true });
+  }
+
+  if (!cookieStore.get("refreshToken")) {
+    return NextResponse.json({ success: false });
+  }
+
+  const res = await globalServer.post("/auth/refresh", null, {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+
+  const cookieHeaders = res.headers["set-cookie"];
   if (cookieHeaders) {
     const cookieArr = Array.isArray(cookieHeaders)
       ? cookieHeaders
@@ -34,5 +45,5 @@ export const POST = async (req: NextRequest) => {
     }
   }
 
-  return NextResponse.json(res.data);
+  return NextResponse.json({ success: true });
 };

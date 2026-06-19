@@ -1,11 +1,11 @@
 import { cookies } from "next/headers";
-import { globalApi } from "../../globalApi";
+import { globalServer } from "../../serverConfig";
 import { NextResponse } from "next/server";
 
 export const POST = async () => {
   const cookieStore = await cookies();
 
-  await globalApi.post("/auth/logout", {
+  const res = await globalServer.post("/auth/logout", null, {
     headers: {
       Cookie: cookieStore.toString(),
     },
@@ -14,5 +14,5 @@ export const POST = async () => {
   cookieStore.delete("accessToken");
   cookieStore.delete("refreshToken");
 
-  return NextResponse.json({ message: "Logged out successfully" });
+  return NextResponse.json({ success: true });
 };

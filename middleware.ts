@@ -1,1 +1,1 @@
-export { proxy as middleware, config } from "./proxy-result";
+export { proxy as middleware, config } from "./proxy";

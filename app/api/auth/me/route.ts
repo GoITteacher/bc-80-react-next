@@ -1,13 +1,15 @@
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
-import { globalApi } from "../../globalApi";
+import { globalServer } from "../../serverConfig";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
   const cookieStore = await cookies();
-  const res = await globalApi.get("/auth/me", {
+
+  const res = await globalServer.get("/auth/me", {
     headers: {
       Cookie: cookieStore.toString(),
     },
   });
-  return NextResponse.json(res.data);
+
+  return NextResponse.json(res.data)
 };
